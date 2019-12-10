@@ -19,7 +19,7 @@ namespace NoMoreAsking {
 		public override ModInfo GetInfo() {
 			return new ModInfo {
 				Name = "No more asking",
-				Description = "Now you can skip ask windows if you hold Shift before action",
+				Description = "Disables confirmation windows if you hold Left Shift when clicking.",
 				Author = "Rafał Babiarz",
 				Version = "1.0.0"
 			};
