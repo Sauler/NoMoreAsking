@@ -5,15 +5,15 @@ using CMS.Mods;
 
 namespace NoMoreAsking {
 	public class Main : Mod {
-		private HarmonyInstance _harmonyInstance;
+		private HarmonyInstance harmonyInstance;
 		
 		public override void Activate() {
-			_harmonyInstance = HarmonyInstance.Create("com.sauler.cms.nomoreasking");
-			_harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+			harmonyInstance = HarmonyInstance.Create("com.sauler.cms.nomoreasking");
+			harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
 		}
 
 		public override void Deactivate() {
-			_harmonyInstance.UnpatchAll();
+			harmonyInstance.UnpatchAll();
 		}
 
 		public override ModInfo GetInfo() {
@@ -32,13 +32,10 @@ namespace NoMoreAsking {
 	class NoMoreAskingPatch {
 		[HarmonyPrefix]
 		public static bool Prefix(NewHash hash) {
-			if (!Input.GetKey(KeyCode.LeftShift)) {
-				ModManager.Log("Button is not holden!");
+			if (!Input.GetKey(KeyCode.LeftShift)) 
 				return true;
-			}
-			
+
 			var type = hash.GetFromKey("WindowType") as string;
-			ModManager.Log("Button is holden! Window type: " + type);
 			if (type == "SellPerCondition")
 				return true;
 			
